@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:face_emotion_detector/face_emotion_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
 class RealTimeMonitor extends StatefulWidget {
   const RealTimeMonitor({super.key});
 
@@ -12,7 +13,10 @@ class RealTimeMonitor extends StatefulWidget {
 
 class _RealTimeMonitorState extends State<RealTimeMonitor> {
 
+
+
   int counter = 1;
+
   String emotion = '';
   Future<void> imotion() async {
 
@@ -45,6 +49,7 @@ class _RealTimeMonitorState extends State<RealTimeMonitor> {
     setState((){
       _imageFile = image;
     });
+
     final emotionDetector = EmotionDetector();
     final file = File(image!.path);
     final label = await emotionDetector.detectEmotionFromImage(image: file);
@@ -57,9 +62,11 @@ class _RealTimeMonitorState extends State<RealTimeMonitor> {
 
 
 
+  Future<void> _takePicture() async {}
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -70,10 +77,10 @@ class _RealTimeMonitorState extends State<RealTimeMonitor> {
               child: _imageFile == null
                   ? Text('No image selected.')
                   : Image.file(
-                File(_imageFile!.path),
-                height: 300,
-                width: 300,
-              ),
+                      File(_imageFile!.path),
+                      height: 300,
+                      width: 300,
+                    ),
             ),
           ],
         ),
