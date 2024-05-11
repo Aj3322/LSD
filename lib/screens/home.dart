@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lsd/screens/incidentReoprting.dart';
+import 'package:lsd/screens/realtimeMonitoring.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -195,7 +196,9 @@ class HomeScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(28, 0, 28, 0),
             child: InkWell(
-              onTap: () {},
+              onTap: () { Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => RealTimeMonitor()));
+                },
               child: Container(
                   height: Height * 0.1,
                   width: Width,
