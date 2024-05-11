@@ -12,7 +12,7 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _controller = TextEditingController();
   final List<ChatMessage> _messages = [];
-
+String first = 'Good day! How can I help you today?';
   void _handleSubmitted(String text) async {
     _controller.clear();
 
@@ -40,6 +40,7 @@ class _ChatScreenState extends State<ChatScreen> {
         setState(() {
           _messages.insert(0, ChatMessage(text: text, isUser: true));
           _messages.insert(0, ChatMessage(text: botMessage, isUser: false));
+          _messages.insert(0, ChatMessage(text: 'Ask more', isUser: false));
         });
       } else {
         // Request failed with an error, handle the error
@@ -51,7 +52,14 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
-
+ @override
+  void initState() {
+    // TODO: implement initState
+   setState(() {
+     _messages.insert(0, ChatMessage(text: first, isUser: false));
+   });
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
