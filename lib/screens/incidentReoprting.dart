@@ -43,7 +43,6 @@ String first = 'Good day! How can I help you today?';
           _messages.insert(0, ChatMessage(text: 'Ask more', isUser: false));
         });
       } else {
-        // Request failed with an error, handle the error
         print('Request failed with status: ${response.statusCode}');
       }
     } catch (error) {
