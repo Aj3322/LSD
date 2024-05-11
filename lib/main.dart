@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:lsd/screens/dashboard.dart';
-import 'package:lsd/screens/notification.dart';
 import 'package:permission_handler/permission_handler.dart';
 import './screens/login.dart';
 import 'firebase_options.dart';
@@ -173,8 +172,8 @@ class _MyAppState extends State<MyApp> {
         primaryColor: const Color.fromARGB(0, 234, 10, 204),
       ),
       home: FirebaseAuth.instance.currentUser == null
-          ? ScheduledCheckInPage()
-          : ScheduledCheckInPage(),
+          ? LoginScreen()
+          : const Dashboard(),
       debugShowCheckedModeBanner: false,
       routes: {
         '/login': (context) =>

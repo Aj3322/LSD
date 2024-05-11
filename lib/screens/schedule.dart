@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 
-class Notifications extends StatefulWidget {
-  const Notifications({Key? key}) : super(key: key);
+class ScheduledCheckInPage extends StatefulWidget {
+  const ScheduledCheckInPage({Key? key}) : super(key: key);
 
   @override
-  _NotificationsState createState() => _NotificationsState();
+  _ScheduledCheckInPageState createState() => _ScheduledCheckInPageState();
 }
 
-class _NotificationsState extends State<Notifications> {
-  bool notification1Selected = false;
-  bool notification2Selected = false;
-  bool notification3Selected = false;
+class _ScheduledCheckInPageState extends State<ScheduledCheckInPage> {
+  TimeOfDay? _selectedTime;
+
+  Future<void> _selectTime(BuildContext context) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: _selectedTime ?? TimeOfDay.now(),
+    );
+    if (picked != null && picked != _selectedTime) {
+      setState(() {
+        _selectedTime = picked;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,39 +32,33 @@ class _NotificationsState extends State<Notifications> {
         children: [
           _buildNotificationContainer(
             'How are you feeling today?',
-            notification1Selected,
-            (value) {
-              setState(() {
-                notification1Selected = value ?? false;
-              });
-            },
+            false,
           ),
           _buildNotificationContainer(
             "Time for a quick check-in. How's your mood right now?",
-            notification2Selected,
-            (value) {
-              setState(() {
-                notification2Selected = value ?? false;
-              });
-            },
+            false,
           ),
           _buildNotificationContainer(
             "It's time for your scheduled check-in. Any incident you'd like to report?",
-            notification3Selected,
-            (value) {
-              setState(() {
-                notification3Selected = value ?? false;
-              });
-            },
+            false,
           ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () => _selectTime(context),
+            child: Text(_selectedTime != null ? 'Change Time' : 'Set Time'),
+          ),
+          if (_selectedTime != null)
+            Text(
+              'Selected Time: ${_selectedTime!.format(context)}',
+              style: TextStyle(fontSize: 20),
+            ),
           Expanded(
             child: Container(
               color: Colors.white,
               child: Center(
                 child: Image.asset(
                   'assets/images/img2.png',
-                  height: MediaQuery.of(context).size.height *
-                      0.5, // 50% of screen height
+                  height: MediaQuery.of(context).size.height * 0.5,
                 ),
               ),
             ),
@@ -64,8 +68,7 @@ class _NotificationsState extends State<Notifications> {
     );
   }
 
-  Widget _buildNotificationContainer(
-      String text, bool selected, ValueChanged<bool?> onChanged) {
+  Widget _buildNotificationContainer(String text, bool selected) {
     return Container(
       color: Colors.white,
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
@@ -78,7 +81,7 @@ class _NotificationsState extends State<Notifications> {
         ),
         trailing: Checkbox(
           value: selected,
-          onChanged: onChanged,
+          onChanged: null,
         ),
         leading: Icon(Icons.notifications),
       ),

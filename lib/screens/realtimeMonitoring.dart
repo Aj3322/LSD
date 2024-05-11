@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
 class RealTimeMonitor extends StatefulWidget {
   const RealTimeMonitor({super.key});
 
@@ -10,7 +11,6 @@ class RealTimeMonitor extends StatefulWidget {
 }
 
 class _RealTimeMonitorState extends State<RealTimeMonitor> {
-
   int counter = 0;
   String emotion = '';
 
@@ -22,7 +22,8 @@ class _RealTimeMonitorState extends State<RealTimeMonitor> {
     });
     print(emotion);
     print(counter);
-    switch (counter) { // Use integer division to get the quotient
+    switch (counter) {
+      // Use integer division to get the quotient
       case 1:
         setState(() {
           emotion = 'Happy';
@@ -40,23 +41,20 @@ class _RealTimeMonitorState extends State<RealTimeMonitor> {
         break;
     }
     // Increment the counter after each switch statement execution
-    if(counter<3){
+    if (counter < 3) {
       counter++;
-    }else{
-      counter=1;
+    } else {
+      counter = 1;
     }
-
-  }
-   XFile? _imageFile;
-
-  Future<void> _takePicture() async {
-
   }
 
+  XFile? _imageFile;
+
+  Future<void> _takePicture() async {}
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -67,10 +65,10 @@ class _RealTimeMonitorState extends State<RealTimeMonitor> {
               child: _imageFile == null
                   ? Text('No image selected.')
                   : Image.file(
-                File(_imageFile!.path),
-                height: 300,
-                width: 300,
-              ),
+                      File(_imageFile!.path),
+                      height: 300,
+                      width: 300,
+                    ),
             ),
           ],
         ),

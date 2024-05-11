@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lsd/screens/incidentReoprting.dart';
+import 'package:lsd/screens/notification.dart';
 import 'package:lsd/screens/realtimeMonitoring.dart';
+import 'package:lsd/screens/schedule.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -56,7 +58,12 @@ class HomeScreen extends StatelessWidget {
                     elevation: const MaterialStatePropertyAll(0),
                     foregroundColor: MaterialStateProperty.all(Colors.white),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Notifications()));
+                  },
                   child: const SizedBox(
                     height: 40,
                     width: 15,
@@ -123,7 +130,12 @@ class HomeScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(28, 0, 28, 0),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ScheduledCheckInPage()));
+              },
               child: Container(
                   height: Height * 0.15,
                   width: Width,
@@ -196,32 +208,41 @@ class HomeScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.fromLTRB(28, 0, 28, 0),
             child: InkWell(
-              onTap: () { Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => RealTimeMonitor()));
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => RealTimeMonitor()));
+              },
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => RealTimeMonitor()));
                 },
-              child: Container(
-                  height: Height * 0.1,
-                  width: Width,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color.fromRGBO(140, 186, 193, 1),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(right: Width * 0.4),
-                        child: const Text(
-                          "Real time \nMonitoring",
-                          style: TextStyle(
-                            fontFamily: 'Nunito Sans',
-                            fontSize: 15,
-                            color: Colors.white,
+                child: Container(
+                    height: Height * 0.1,
+                    width: Width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: const Color.fromRGBO(140, 186, 193, 1),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(right: Width * 0.4),
+                          child: const Text(
+                            "Real time \nMonitoring",
+                            style: TextStyle(
+                              fontFamily: 'Nunito Sans',
+                              fontSize: 15,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  )),
+                      ],
+                    )),
+              ),
             ),
           ),
         ]));
