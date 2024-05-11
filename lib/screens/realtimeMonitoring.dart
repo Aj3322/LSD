@@ -11,25 +11,35 @@ class _RealTimeMonitorState extends State<RealTimeMonitor> {
   int counter = 0;
   String emotion = '';
 
-
-  void imotion(){
-
-    switch(counter){
+  void imotion() {
+    print(emotion);
+    print(counter);
+    switch (counter) { // Use integer division to get the quotient
       case 1:
         setState(() {
-          emotion='Happy';
+          emotion = 'Happy';
         });
-      case 1:
+        break; // Add break statements to exit the switch statement after each case
+      case 2:
         setState(() {
-          emotion='Sad';
+          emotion = 'Sad';
         });
-      case 1:
+        break;
+      case 3:
         setState(() {
-          emotion='Angry';
+          emotion = 'Angry';
         });
+        break;
+    }
+    // Increment the counter after each switch statement execution
+    if(counter<3){
+      counter++;
+    }else{
+      counter=1;
     }
 
   }
+
 
 
   @override
@@ -37,11 +47,10 @@ class _RealTimeMonitorState extends State<RealTimeMonitor> {
     return  Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Emotion'),
-            ElevatedButton(onPressed: () => setState(() {
-              counter++;
-            }), child: Text("Monitor"))
+            Text('Emotion  $emotion'),
+            ElevatedButton(onPressed: () => imotion(), child: Text("Monitor"))
           ],
         ),
       ),
