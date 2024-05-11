@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:lsd/screens/incidentReoprting.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -78,7 +79,10 @@ class HomeScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(28.0),
             child: InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ChatScreen()));
+              },
               child: Container(
                   height: Height * 0.2,
                   width: Width,

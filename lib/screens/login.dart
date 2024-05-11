@@ -118,9 +118,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 }
               },
             ),
-            _OrSeparator(),
-            _GoogleButton(),
-            _CustomDivider(),
+            // _OrSeparator(),
+            // _GoogleButton(),
+            // _CustomDivider(),
             _SignUpButton(),
           ],
         ),

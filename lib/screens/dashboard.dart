@@ -1,7 +1,7 @@
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:lsd/screens/addFriend.dart';
 import 'package:lsd/screens/community.dart';
 import 'package:lsd/screens/emergency.dart';
-import 'package:lsd/screens/friendAlert.dart';
 import 'package:lsd/screens/home.dart';
 
 class Dashboard extends StatefulWidget {
@@ -54,7 +54,7 @@ class _DashboardState extends State<Dashboard> {
       case 2:
         return const Community();
       case 3:
-        return const FriendAlert();
+        return const AddFriend();
       default:
         return Container(); // Return an empty container for unknown index
     }

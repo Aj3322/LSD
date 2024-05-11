@@ -66,7 +66,7 @@ class _EmergencyState extends State<Emergency> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> number = ['6203172968', '9523137146'];
+    List<String> number = ['9729574967', '7206629681'];
     var screenSize = MediaQuery.sizeOf(context);
     var Width = screenSize.width;
     var Height = screenSize.height;
@@ -76,7 +76,7 @@ class _EmergencyState extends State<Emergency> {
         body: Column(
           children: [
             const SizedBox(
-              height: 20,
+              height: 50,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -205,7 +205,7 @@ class _EmergencyState extends State<Emergency> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text("Friend 1",
+                          child: Text("Friend 3",
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.grey[400],
@@ -232,7 +232,7 @@ class _EmergencyState extends State<Emergency> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Text("Friend 2",
+                          child: Text("Friend 4",
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Colors.grey[400],

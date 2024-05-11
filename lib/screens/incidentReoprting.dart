@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-
 class ChatScreen extends StatefulWidget {
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -51,7 +50,6 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,13 +87,17 @@ class _ChatScreenState extends State<ChatScreen> {
               child: TextField(
                 controller: _controller,
                 onSubmitted: _handleSubmitted,
-                decoration: InputDecoration.collapsed(hintText: 'Send a message'),
+                decoration:
+                    InputDecoration.collapsed(hintText: 'Send a message'),
               ),
             ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 4.0),
               child: IconButton(
-                icon: Icon(Icons.send,color: Colors.black,),
+                icon: Icon(
+                  Icons.send,
+                  color: Colors.black,
+                ),
                 onPressed: () => _handleSubmitted(_controller.text),
               ),
             ),
@@ -110,34 +112,45 @@ class ChatMessage extends StatelessWidget {
   final String text;
   final bool isUser;
 
-  const ChatMessage({Key? key, required this.text, required this.isUser}) : super(key: key);
+  const ChatMessage({Key? key, required this.text, required this.isUser})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.0),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          isUser ? SizedBox() : CircleAvatar(child: Icon(Icons.account_circle)),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  isUser ? 'You' : 'Bot',
-                  style: Theme.of(context).textTheme.subtitle2,
+    return Column(
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(vertical: 10.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              isUser
+                  ? SizedBox()
+                  : CircleAvatar(child: Icon(Icons.account_circle)),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: isUser
+                      ? CrossAxisAlignment.end
+                      : CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      isUser ? 'You' : 'Bot',
+                      style: Theme.of(context).textTheme.subtitle2,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 5.0),
+                      child: Text(text),
+                    ),
+                  ],
                 ),
-                Container(
-                  margin: EdgeInsets.only(top: 5.0),
-                  child: Text(text),
-                ),
-              ],
-            ),
+              ),
+              isUser
+                  ? CircleAvatar(child: Icon(Icons.account_circle))
+                  : SizedBox(),
+            ],
           ),
-          isUser ? CircleAvatar(child: Icon(Icons.account_circle)) : SizedBox(),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
