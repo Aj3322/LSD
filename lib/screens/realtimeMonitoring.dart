@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:face_emotion_detector/face_emotion_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -11,44 +12,55 @@ class RealTimeMonitor extends StatefulWidget {
 }
 
 class _RealTimeMonitorState extends State<RealTimeMonitor> {
-  int counter = 0;
-  String emotion = '';
 
+
+
+  int counter = 1;
+
+  String emotion = '';
   Future<void> imotion() async {
+
+    // print(counter);
+    // switch (counter) {
+    //   case 1:
+    //     setState(() {
+    //       emotion = 'Happy';
+    //     });
+    //     break; // Add break statements to exit the switch statement after each case
+    //   case 2:
+    //     setState(() {
+    //       emotion = 'Sad';
+    //     });
+    //     break;
+    //   case 3:
+    //     setState(() {
+    //       emotion = 'Angry';
+    //     });
+    //     break;
+    // }
+    // Increment the counter after each switch statement execution
+    // if(counter<3){
+    //   counter++;
+    // }else{
+    //   counter=1;
+    // }
     final ImagePicker _picker = ImagePicker();
     final XFile? image = await _picker.pickImage(source: ImageSource.camera);
-    setState(() {
+    setState((){
       _imageFile = image;
     });
-    print(emotion);
-    print(counter);
-    switch (counter) {
-      // Use integer division to get the quotient
-      case 1:
-        setState(() {
-          emotion = 'Happy';
-        });
-        break; // Add break statements to exit the switch statement after each case
-      case 2:
-        setState(() {
-          emotion = 'Sad';
-        });
-        break;
-      case 3:
-        setState(() {
-          emotion = 'Angry';
-        });
-        break;
-    }
-    // Increment the counter after each switch statement execution
-    if (counter < 3) {
-      counter++;
-    } else {
-      counter = 1;
-    }
-  }
 
+    final emotionDetector = EmotionDetector();
+    final file = File(image!.path);
+    final label = await emotionDetector.detectEmotionFromImage(image: file);
+    setState(() {
+      emotion=label!;
+    });
+    print(emotion+label.toString());
+  }
   XFile? _imageFile;
+
+
 
   Future<void> _takePicture() async {}
 
