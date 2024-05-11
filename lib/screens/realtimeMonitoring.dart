@@ -11,7 +11,7 @@ class RealTimeMonitor extends StatefulWidget {
 
 class _RealTimeMonitorState extends State<RealTimeMonitor> {
 
-  int counter = 0;
+  int counter = 1;
   String emotion = '';
 
   Future<void> imotion() async {
@@ -49,9 +49,6 @@ class _RealTimeMonitorState extends State<RealTimeMonitor> {
   }
    XFile? _imageFile;
 
-  Future<void> _takePicture() async {
-
-  }
 
 
   @override
